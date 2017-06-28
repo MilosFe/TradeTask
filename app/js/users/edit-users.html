@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="form-group">
+
+        <label class="col-sm-2 control-label">First Name </label>
+        <div class="col-sm-10">
+            <input type="text" ng-model='editUsers.form.first_name' ng-value='editUsers.editUser.first_name' class="form-control" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Last Name</label>
+        <div class="col-sm-10">
+            <input type="text" ng-model='editUsers.form.last_name' ng-value='editUsers.editUser.last_name' class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+            <input type="text" ng-model='editUsers.form.email' ng-value='editUsers.editUser.email' class="form-control" />
+        </div>
+    </div>
+
+
+
+    <button ng-click='editUsers.editUsers(editUsers.editUser.id)' class="btn btn-info">Confirm Edit</button>
+</div>

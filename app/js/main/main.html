@@ -1,0 +1,186 @@
+<section class="container" ng-controller="TabController as tab">
+    <ul class="nav nav-pills">
+        <li ng-class="{ active:tab.isSet(1) }">
+            <a href ng-click="tab.setTab(1)">Cars</a>
+        </li>
+        <li ng-class="{ active:tab.isSet(2) }">
+            <a href ng-click="tab.setTab(2)">Users</a>
+        </li>
+        <li ng-class="{ active:tab.isSet(3) }">
+            <a href ng-click="tab.setTab(3)">Logs</a>
+        </li>
+    </ul>
+    <div ng-show="tab.isSet(1)">
+        <div ng-controller="CarsController as carsCtrl">
+            <h2>Cars Table</h2>
+            <p>Listing of cars</p>
+            <a href='#!/add-cars' type="button" class="btn btn-primary">Add Car </a>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr ng-repeat="item in carsCtrl.cars | limitTo:1">
+                        <th ng-repeat="(key, val) in item">
+                            <a ng-click="carsCtrl.setOder(key)"> {{key | format}}</a>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td> Filtered list has {{filtered.length}} items</td>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" ng-model="search.id">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="search.car">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="search.payment_method">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="search.currency">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="search.city">
+                        </td>
+                    </tr>
+
+                    <tr ng-repeat='item in filtered = (carsCtrl.cars | orderBy : carsCtrl.order | filter:search )'>
+                        <td> {{item.id}}</td>
+                        <td> {{item.car}}</td>
+                        <td> {{item.payment_method}}</td>
+                        <td> {{item.currency}}</td>
+                        <td> {{item.city}}</td>
+                        <td>
+                            <a href="/#!/edit-cars/{{$index}}" class="btn btn-default">Edit</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" ng-click="carsCtrl.delCar($index, item.id)">delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div ng-show="tab.isSet(2)">
+        <div ng-controller="UsersController as userCtrl">
+            <h2>Users Table</h2>
+            <p>Listing of users</p>
+            <a href='#!/add-users' type="button" class="btn btn-primary">Add Users </a>
+            <table class="table table-striped">
+                <thead>
+                    <tr ng-repeat="item in userCtrl.users | limitTo:1">
+                        <th ng-repeat="(key, val) in item">
+                            <a ng-click="userCtrl.setOder(key)"> {{key | format}}</a>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td> Filtered list has {{filtered.length}} items</td>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" ng-model="search.id">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="search.first_name">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="search.last_name">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="search.email">
+                        </td>
+
+                    </tr>
+                    <tr ng-repeat='item in filtered = (userCtrl.users | orderBy : userCtrl.order | filter:search )'>
+                        <td> {{item.id}}</td>
+                        <td> {{item.first_name}}</td>
+                        <td> {{item.last_name}}</td>
+                        <td> {{item.email}}</td>
+                        <td>
+                            <a href="/#!/edit-users/{{$index}}" class="btn btn-default">Edit</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" ng-click="userCtrl.delUsers($index, item.id)">delete</a>
+                        </td>
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+    <div ng-show="tab.isSet(3)">
+        <div ng-controller="UploadsController as uploadsCtrl">
+            <h2>Uploads Table</h2>
+            <p>Listing of uploads</p>
+            <a href='#!/add-uploads' type="button" class="btn btn-primary">Add Uploads </a>
+            <table class="table table-striped">
+                <thead>
+                    <tr ng-repeat="item in uploadsCtrl.uploads | limitTo: 1">
+                        <th ng-repeat="(key, val) in item | limitTo: 1" ng-if="$index<3">
+                            <a href='#' ng-click="uploadsCtrl.setOder(key)"> {{key | format}}</a>
+                        </th>
+                        <th ng-repeat="(key, val) in item.datetime">
+                            <a ng-click="uploadsCtrl.setOder(key)"> {{key | format}}</a>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td> Filtered list has {{filtered.length}} items</td>
+
+                    </tr>
+                </tfoot>
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" ng-model="search.id">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="search.username">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="search.filename">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="search.datetime.date">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="search.datetime.time">
+                        </td>
+                    </tr>
+                    <tr ng-repeat='item in filtered = (uploadsCtrl.uploads | orderBy : uploadsCtrl.order | filter:search )'>
+                        <td> {{item.id}}</td>
+                        <td> {{item.username}}</td>
+                        <td> {{item.filename}}</td>
+                        <td am-time-ago="item.datetime.date"> </td>
+                        <td> {{item.datetime.time}}</td>
+                        <td>
+                            <a href="/#!/edit-uploads/{{$index}}" class="btn btn-default">Edit</a>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger" ng-click="uploadsCtrl.delUpload($index, item.id)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</section>

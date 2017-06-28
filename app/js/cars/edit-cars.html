@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Car </label>
+        <div class="col-sm-10">
+            <input type="text" ng-model='vmEdit.form.car' ng-value='vmEdit.edit.car' class="form-control" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Payment Method</label>
+        <div class="col-sm-10">
+            <input type="text" ng-model='vmEdit.form.payment_method' ng-value='vmEdit.edit.payment_method' class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Curency</label>
+        <div class="col-sm-10">
+            <input type="text" ng-model='vmEdit.form.currency' ng-value='vmEdit.edit.currency' class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">City</label>
+        <div class="col-sm-10">
+            <input type="text" ng-model='vmEdit.form.city' ng-value='vmEdit.edit.city' class="form-control" />
+        </div>
+    </div>
+
+    <button ng-click='vmEdit.editCars(vmEdit.edit.id)' class="btn btn-info">Confirm Edit</button>
+</div>
