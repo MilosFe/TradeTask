@@ -8,4 +8,4 @@ run npm install to install dependecies
 
 run gulp to start development server
 
-run gupl buld to bundle production build
+run gulp buld to bundle production build
